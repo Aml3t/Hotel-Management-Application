@@ -1,4 +1,5 @@
 # Hotel-Management-Application
+
 MVP form of a hotel management application 
 
 This is an MVP (a.k.a Minimum Viable Product) of a hotel magement application.
