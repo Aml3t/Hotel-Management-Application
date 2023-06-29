@@ -7,4 +7,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RoomNumber" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="b346c5fe-fa71-4487-98ae-55366bd6aafa" ChangeDateTime="06/29/2023 10:48:11">
+    <Property Name="ElementName" Value="[dbo].[FK_Bookings_TRooms]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Bookings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Bookings_Rooms]" />
+  </Operation>
 </Operations>
