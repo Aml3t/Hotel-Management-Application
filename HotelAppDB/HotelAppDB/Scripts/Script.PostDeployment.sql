@@ -13,11 +13,11 @@ Post-Deployment Script Template
 -- Generate sample data for Guests table
 if not exists (select 1 from dbo.RoomTypes)
 begin
-    insert into dbo.RoomTypes(Title, Description)
+    insert into dbo.RoomTypes(Title, Description, Price)
     Values
-        ('Junior Suite', 'The junior suite of the hotel'),
-        ('Suite','The standar suite of the hotel'),
-        ('Executive Suite','The best suite of the hotel');
+        ('Junior Suite', 'The junior suite of the hotel', 100),
+        ('Suite','The standar suite of the hotel', 115),
+        ('Executive Suite','The best suite of the hotel', 205);
 end
 
 if not exists (select 1 from dbo.Rooms)
