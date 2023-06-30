@@ -12,21 +12,24 @@ namespace HotelAppLibrary.Databases
 {
     public class SqlDataAccess
     {
-        private readonly IConfiguration config;
+        private readonly IConfiguration _config;
 
         public SqlDataAccess(IConfiguration config)
         {
-            this.config = config;
+            _config = config;
         }
-        public List<T> LoadData<T, U>(string sqlStatement, U parameters)
+        public List<T> LoadData<T, U>(string sqlStatement,
+                                      U parameters,
+                                      string connectionStringName,
+                                      dynamic options)
         {
+            string connectionString = _config.GetConnectionString(connectionStringName);
+
             using (IDbConnection connection = new SqlConnection())
             {
-                var p = new DynamicParameters();
 
-                p.Add("MyParameter", parameter);
-                connection.Execute("spWriteToSql", p, commandType: CommandType.StoredProcedure);
-
+                List<T> rows = connection.Query<T>(sqlStatement, parameters).ToList();
+                return rows;
             }
         }
     }
