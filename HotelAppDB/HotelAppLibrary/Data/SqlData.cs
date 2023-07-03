@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelAppLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,11 @@ namespace HotelAppLibrary.Data
 {
     public class SqlData
     {
-        public void GetAvailableRoomTypes()
+        public List<RoomTypeModel> GetAvailableRoomTypes(DateTime startDate, DateTime endDate)
         {
+            List<RoomTypeModel> rooms = new List<RoomTypeModel>();
 
+            return rooms;
         }
     }
 }
