@@ -25,13 +25,13 @@ namespace HotelAppLibrary.Databases
                                       dynamic options = null)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
+            
             CommandType commandType = CommandType.Text; //Default value of commandType
 
             if (options.IsStoredProcedure != null && options.IsStoredProcedure == true) //Check whether default or Stored Procedure
             {
                 commandType = CommandType.StoredProcedure;
             }
-
 
             using (IDbConnection connection = new SqlConnection())
             {
@@ -46,6 +46,19 @@ namespace HotelAppLibrary.Databases
                                 string connectionStringName,
                                 dynamic options = null)
         {
+            string connectionString = _config.GetConnectionString(connectionStringName);
+            
+            CommandType commandType = CommandType.Text;
+
+            if (options.IsStoredProcedure != null && options.IsStoredProcedure == true )
+            {
+                commandType = CommandType.StoredProcedure;
+            }
+
+            using (IDbConnection connection = new SqlConnection())
+            {
+                connection.Execute(sqlStatement, parameters, commandType: commandType);
+            }
 
         }
     }
