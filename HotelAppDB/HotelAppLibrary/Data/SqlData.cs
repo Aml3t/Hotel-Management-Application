@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelAppLibrary
+namespace HotelAppLibrary.Data
 {
-    public class Enums
+    public class SqlData
     {
-        public enum RoomTypes
+        public void GetAvailableRoomTypes()
         {
-            Junior Suite,
-            Suite,
-            Executive Suite
+
         }
     }
 }
