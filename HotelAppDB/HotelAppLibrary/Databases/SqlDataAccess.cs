@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelAppLibrary.Databases
 {
-    public class SqlDataAccess
+    public class SqlDataAccess : IDataAccess
     {
         private readonly IConfiguration _config;
 
@@ -25,7 +25,7 @@ namespace HotelAppLibrary.Databases
                                       dynamic options = null)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
-            
+
             CommandType commandType = CommandType.Text; //Default value of commandType
 
             if (options.IsStoredProcedure != null && options.IsStoredProcedure == true) //Check whether default or Stored Procedure
@@ -47,10 +47,10 @@ namespace HotelAppLibrary.Databases
                                 dynamic options = null)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
-            
+
             CommandType commandType = CommandType.Text;
 
-            if (options.IsStoredProcedure != null && options.IsStoredProcedure == true )
+            if (options.IsStoredProcedure != null && options.IsStoredProcedure == true)
             {
                 commandType = CommandType.StoredProcedure;
             }
