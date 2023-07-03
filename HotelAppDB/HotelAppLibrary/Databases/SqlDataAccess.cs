@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelAppLibrary.Databases
 {
-    public class SqlDataAccess : IDataAccess
+    public class SqlDataAccess : ISqlDataAccess
     {
         private readonly IConfiguration _config;
 
