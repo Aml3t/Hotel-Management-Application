@@ -22,13 +22,13 @@ namespace HotelAppLibrary.Databases
         public List<T> LoadData<T, U>(string sqlStatement,
                                       U parameters,
                                       string connectionStringName,
-                                      dynamic options = null)
+                                      bool isStoredProcedure = false)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
 
             CommandType commandType = CommandType.Text; //Default value of commandType
 
-            if (options.IsStoredProcedure != null && options.IsStoredProcedure == true) //Check whether default or Stored Procedure
+            if (isStoredProcedure == true) //Check whether default or Stored Procedure
             {
                 commandType = CommandType.StoredProcedure;
             }
@@ -44,13 +44,13 @@ namespace HotelAppLibrary.Databases
         public void SaveData<T>(string sqlStatement,
                                 T parameters,
                                 string connectionStringName,
-                                dynamic options = null)
+                                bool isStoredProcedure = false)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
 
             CommandType commandType = CommandType.Text;
 
-            if (options.IsStoredProcedure != null && options.IsStoredProcedure == true)
+            if (isStoredProcedure == true)
             {
                 commandType = CommandType.StoredProcedure;
             }

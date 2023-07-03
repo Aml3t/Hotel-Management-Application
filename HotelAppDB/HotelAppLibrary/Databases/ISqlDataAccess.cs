@@ -5,11 +5,11 @@
         List<T> LoadData<T, U>(string sqlStatement,
                                U parameters,
                                string connectionStringName,
-                               dynamic options = null);
+                               bool isStoredProcedure = false);
 
         void SaveData<T>(string sqlStatement,
                          T parameters,
                          string connectionStringName,
-                         dynamic options = null);
+                         bool isStoredProcedure = false);
     }
 }
