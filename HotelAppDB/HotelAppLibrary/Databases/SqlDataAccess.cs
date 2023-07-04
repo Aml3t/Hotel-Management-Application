@@ -35,7 +35,6 @@ namespace HotelAppLibrary.Databases
 
             using (IDbConnection connection = new SqlConnection())
             {
-
                 List<T> rows = connection.Query<T>(sqlStatement, parameters, commandType: commandType).ToList();
                 return rows;
             }
