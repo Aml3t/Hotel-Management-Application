@@ -1,0 +1,21 @@
+﻿CREATE PROCEDURE [dbo].[spBookings_Insert]
+	@roomId int,
+	@guestId int,
+	@startDate date,
+	@endDate date,
+	--@checkedIn bit = 0,
+	@totalCost money
+
+
+AS
+begin
+	set nocount on;
+
+	insert into dbo.Bookings(RoomId, GuestId, StartDate, EndDate, TotalCost)
+	values (@roomId, @guestId, @startDate, @endDate, @totalCost) 
+
+end
+
+
+
+

@@ -39,6 +39,15 @@ namespace HotelAppLibrary.Data
                                                                  connectionStringName,
                                                                  true).FirstOrDefault();
 
+            RoomTypeModel roomType = _db.LoadData<RoomTypeModel, dynamic>("select * from dbo.RoomTypes where Id = @Id",
+                                                                          new { Id = roomTypeId },
+                                                                          connectionStringName,
+                                                                          false).First();
+
+            TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
+
+            
+
             List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
                                                                               new { startDate, endDate, roomTypeId},
                                                                               connectionStringName,
