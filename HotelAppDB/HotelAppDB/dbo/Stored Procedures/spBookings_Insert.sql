@@ -3,7 +3,6 @@
 	@guestId int,
 	@startDate date,
 	@endDate date,
-	--@checkedIn bit = 0,
 	@totalCost money
 
 

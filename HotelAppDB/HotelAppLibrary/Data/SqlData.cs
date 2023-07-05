@@ -52,6 +52,18 @@ namespace HotelAppLibrary.Data
                                                                               new { startDate, endDate, roomTypeId},
                                                                               connectionStringName,
                                                                               true);
+
+            _db.SaveData("dbo.spBookings_Insert",
+                         new
+                         {
+                             roomId = availableRooms.First().Id,
+                             guestId = guest.Id,
+                             startDate = startDate,
+                             endDate = endDate,
+                             totalCost = timeStaying.Days * roomType.Price
+                         },
+                         connectionStringName,
+                         true);
         }
     }
 }
