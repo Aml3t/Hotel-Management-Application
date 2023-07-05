@@ -26,5 +26,11 @@ namespace HotelAppLibrary.Data
                                                 connectionStringName,
                                                 true);
         }
+
+        public void SaveBooking(int roomId, int guestId, DateTime startDate, DateTime endDate)
+        {
+             _db.SaveData<BookingModel>("dbo.spBookings_AddBooking",
+                                new { RoomId })
+        }
     }
 }
