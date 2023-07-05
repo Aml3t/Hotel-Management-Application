@@ -27,10 +27,15 @@ namespace HotelAppLibrary.Data
                                                 true);
         }
 
-        public void SaveBooking(int roomId, int guestId, DateTime startDate, DateTime endDate)
+        public List<BookingModel> SaveBooking(int roomId,
+                                int guestId,
+                                DateTime startDate,
+                                DateTime endDate,
+                                bool checkIn,
+                                decimal totalCost)
         {
-           return _db.SaveData<BookingModel, dynamic>("dbo.spBookings_AddBooking",
-                               new { roomId, guestId, startDate, endDate },
+          return _db.SaveData<BookingModel>("dbo.spBookings_Insert",
+                               (new BookingModel { roomId, guestId, startDate, endDate, checkIn, totalCost }).ToString(),
                                connectionStringName,
                                true
                                );

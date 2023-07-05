@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spBookings_AddBooking]
+﻿CREATE PROCEDURE [dbo].[spBookings_Insert]
 	@roomId int,
 	@guestId int,
 	@startDate date,
