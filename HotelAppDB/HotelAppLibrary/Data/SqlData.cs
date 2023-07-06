@@ -65,5 +65,16 @@ namespace HotelAppLibrary.Data
                          connectionStringName,
                          true);
         }
+
+        public List<BookingModel> SearchBookings(DateTime startDate,
+                                                DateTime endDate,
+                                                int roomTypeId)
+        {
+            return _db.LoadData<BookingModel, dynamic>("dbo.spBookings_GetAvailableBookings",
+                                                new { },
+                                                connectionStringName,
+                                                true);
+
+        }
     }
 }
