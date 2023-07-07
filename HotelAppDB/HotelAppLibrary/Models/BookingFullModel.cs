@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelAppLibrary.Models
 {
-    public class BookingModel
+    public class BookingFullModel
     {
         public int Id { get; set; }
         public int RoomId { get; set; }
