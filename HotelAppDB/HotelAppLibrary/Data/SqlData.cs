@@ -66,14 +66,12 @@ namespace HotelAppLibrary.Data
                          true);
         }
 
-        public List<BookingFullModel> SearchBookings(DateTime startDate,
-                                                string lastName)
+        public List<BookingFullModel> SearchBookings(string lastName)
         {
             return _db.LoadData<BookingFullModel, dynamic>("dbo.spBookings_Search",
-                                                new { },
+                                                new { lastName, startDate = DateTime.Now.Date },
                                                 connectionStringName,
                                                 true);
-
         }
     }
 }
