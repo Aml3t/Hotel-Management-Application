@@ -73,5 +73,22 @@ namespace HotelAppLibrary.Data
                                                 connectionStringName,
                                                 true);
         }
+
+        public void CheckInGuest(int bookingId, bool checkedIn)
+        {
+            BookingFullModel guest = new BookingFullModel();
+
+            guest.Id = bookingId;
+
+            SearchBookings(bookingId.ToString());
+            
+            if (checkedIn == true)
+            {
+                guest.CheckedIn = true;
+            }
+
+            _db.SaveData<BookingFullModel>("dbo.spBookings_Insert", guest, connectionStringName, true);
+
+        }
     }
 }
