@@ -87,7 +87,7 @@ namespace HotelAppLibrary.Data
                 guest.CheckedIn = true;
             }
 
-            _db.SaveData<BookingFullModel>("dbo.spBookings_Insert", guest, connectionStringName, true);
+            _db.SaveData<BookingFullModel>("dbo.spBookings_CheckIn", guest, connectionStringName, true);
 
         }
     }
