@@ -33,8 +33,7 @@ namespace HotelAppLibrary.Data
                               DateTime endDate,
                               int roomTypeId)
         {
-            // Added the ? in case of null value//
-            GuestModel? guest = _db.LoadData<GuestModel, dynamic>("dbo.spGuests_Insert",
+            GuestModel guest = _db.LoadData<GuestModel, dynamic>("dbo.spGuests_Insert",
                                                                  new { FirstName, LastName },
                                                                  connectionStringName,
                                                                  true).FirstOrDefault();

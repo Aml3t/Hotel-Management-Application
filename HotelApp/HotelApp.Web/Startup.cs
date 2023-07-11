@@ -26,6 +26,8 @@ namespace HotelApp.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            //Mapping an interface to a type. Depentency injection stuff etc//
             services.AddTransient<IDatabaseData, SqlData>();
             services.AddTransient<ISqlDataAccess, SqlDataAccess>();
         }
