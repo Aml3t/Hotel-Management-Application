@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelAppLibrary.Data
 {
-    public class SqlData
+    public class SqlData : IDatabaseData
     {
         private readonly ISqlDataAccess _db;
 
@@ -46,10 +46,10 @@ namespace HotelAppLibrary.Data
 
             TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
 
-            
+
 
             List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
-                                                                              new { startDate, endDate, roomTypeId},
+                                                                              new { startDate, endDate, roomTypeId },
                                                                               connectionStringName,
                                                                               true);
 
@@ -74,21 +74,9 @@ namespace HotelAppLibrary.Data
                                                 true);
         }
 
-        public void CheckInGuest(int bookingId, bool checkedIn)
+        public void CheckInGuest(int bookingId)
         {
-            BookingFullModel guest = new BookingFullModel();
-
-            guest.Id = bookingId;
-
-            SearchBookings(bookingId.ToString());
-            
-            if (checkedIn == true)
-            {
-                guest.CheckedIn = true;
-            }
-
-            _db.SaveData<BookingFullModel>("dbo.spBookings_CheckIn", guest, connectionStringName, true);
-
+            _db.SaveData("dbo.spBookings_CheckIn", new { Id = bookingId }, connectionStringName, true);
         }
     }
 }
