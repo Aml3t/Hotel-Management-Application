@@ -33,9 +33,12 @@ namespace HotelAppLibrary.Databases
                 commandType = CommandType.StoredProcedure;
             }
 
-            using (IDbConnection connection = new SqlConnection())
+            using (IDbConnection connection = new SqlConnection(connectionString))
             {
-                List<T> rows = connection.Query<T>(sqlStatement, parameters, commandType: commandType).ToList();
+                List<T> rows = connection.Query<T>(sqlStatement,
+                                                   parameters,
+                                                   commandType: commandType).ToList();
+                
                 return rows;
             }
         }
@@ -54,7 +57,7 @@ namespace HotelAppLibrary.Databases
                 commandType = CommandType.StoredProcedure;
             }
 
-            using (IDbConnection connection = new SqlConnection())
+            using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 connection.Execute(sqlStatement, parameters, commandType: commandType);
             }

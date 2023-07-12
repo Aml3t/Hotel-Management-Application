@@ -15,8 +15,8 @@ if not exists (select 1 from dbo.RoomTypes)
 begin
     insert into dbo.RoomTypes(Title, Description, Price)
     Values
-        ('Junior Suite', 'The junior suite of the hotel', 100),
-        ('Suite','The standar suite of the hotel', 115),
+        ('Suite','The standar suite of the hotel', 100),
+        ('Junior Suite','The junior suite of the hotel', 115),
         ('Executive Suite','The best suite of the hotel', 205);
 end
 
@@ -26,8 +26,8 @@ begin
     declare @roomId2 int;
     declare @roomId3 int;
 
-    select @roomId1 = Id from dbo.RoomTypes where Title = 'Junior Suite';
-    select @roomId2 = Id from dbo.RoomTypes where Title = 'Suite';
+    select @roomId1 = Id from dbo.RoomTypes where Title = 'Suite';
+    select @roomId2 = Id from dbo.RoomTypes where Title = 'Junior Suite';
     select @roomId3 = Id from dbo.RoomTypes where Title = 'Executive Suite';
 
     insert into dbo.Rooms(RoomNumber, RoomTypeId)
