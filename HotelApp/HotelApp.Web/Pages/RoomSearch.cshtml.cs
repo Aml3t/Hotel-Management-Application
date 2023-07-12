@@ -1,14 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelApp.Web.Pages
 {
     public class RoomSearchModel : PageModel
     {
-        public DateTime StartDate { get; set; }
+        [DataType(DataType.Date)]
+        [BindProperty]
+        public DateTime StartDate { get; set; } = DateTime.Now;
 
-        public DateTime EndDate { get; set; }
+        [DataType(DataType.Date)]
+        [BindProperty]
+        public DateTime EndDate { get; set; } = DateTime.Now.AddDays(7);
 
         public void OnGet()
         {
