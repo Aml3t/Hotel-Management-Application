@@ -1,7 +1,7 @@
 ﻿@page
 @model HotelApp.Web.Pages.RoomSearchModel
 @{
-    ViewData["Title"] = "Room Searc";
+    ViewData["Title"] = "Room Search";
 }
 
 <h1>Room Searc</h1>
@@ -18,3 +18,14 @@
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
 </form>
+
+@if (Model.AvailableRoomTypes?.Count > 0)
+{
+    <h2>Results</h2>
+    foreach (var room in Model.AvailableRoomTypes)
+    {
+        <li>@room.Title</li>
+    }
+    
+}
+
