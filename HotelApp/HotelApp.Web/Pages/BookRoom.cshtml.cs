@@ -10,6 +10,21 @@ namespace HotelApp.Web.Pages
     {
         private readonly IDatabaseData _db;
 
+        [BindProperty]
+        public string FirstName { get; set; }
+        
+        [BindProperty]
+        public string LastName { get; set; }
+
+        [BindProperty]
+        public DateTime StartDate { get; set; }
+
+        [BindProperty]
+        public DateTime EndDate { get; set; }
+        
+        [BindProperty]
+        public int RoomTypeId { get; set; }
+
         GuestModel guest = new GuestModel();
 
         RoomTypeModel roomType = new RoomTypeModel();
