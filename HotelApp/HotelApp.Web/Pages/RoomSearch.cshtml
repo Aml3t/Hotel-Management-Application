@@ -4,7 +4,7 @@
     ViewData["Title"] = "Room Search";
 }
 
-<h1>Room Searc</h1>
+<h1>Room Search</h1>
 
 
 <form method="post">
@@ -24,12 +24,13 @@
 
 @if (Model.AvailableRoomTypes?.Count > 0)
 {
+    <br />
     <h2>Results</h2>
     <table>
         <thead>
             <tr>
-                <th>Room Type</th>
-                <th>Price</th>
+                <th><strong>Room Type</strong></th>
+                <th><strong>Price</strong></th>
                 <th></th>
             </tr>
         </thead>
@@ -42,7 +43,7 @@
                         <strong>@room.Title</strong>
                         @room.Description
                    </td>
-                   <td>@room.Price</td>
+                   <td>@string.Format("{0:C}", room.Price)</td>
                    <td><a href="">Book Now</a></td>
                </tr>
             }
