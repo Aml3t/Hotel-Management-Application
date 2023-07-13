@@ -1,4 +1,5 @@
 using HotelAppLibrary.Data;
+using HotelAppLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -9,26 +10,34 @@ namespace HotelApp.Web.Pages
     {
         private readonly IDatabaseData _db;
 
-        public string LastName { get; set; }
-        public DateTime StartDate { get; set; }
+        GuestModel guest = new GuestModel();
 
-        public DateTime EndDate { get; set; }
-        public int RoomTypeId { get; set; }
+        RoomTypeModel roomType = new RoomTypeModel();
+
+        RoomModel room = new RoomModel();
+
+        BookingFullModel booking = new BookingFullModel();
 
         public BookRoomModel(IDatabaseData db)
         {
             _db = db;
         }
+
         public void OnGet()
         {
+            
+        }
 
+        public IActionResult OnPost()
+        {
+            return RedirectToPage(new {
+                roomId = "",
+                guestId = guest.Id,
+                startData = DateTime.Now,
+                endDate = DateTime.Now,
+                totalCost = ""
+            });
         }
     }
 }
 
-
-//BookGuest(string FirstName,
-//                              string LastName,
-//                              DateTime startDate,
-//                              DateTime endDate,
-//                              int roomTypeId)
