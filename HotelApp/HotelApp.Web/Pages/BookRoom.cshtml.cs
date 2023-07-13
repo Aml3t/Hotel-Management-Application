@@ -46,13 +46,7 @@ namespace HotelApp.Web.Pages
 
         public IActionResult OnPost()
         {
-            return RedirectToPage(new {
-                roomId = "",
-                guestId = guest.Id,
-                startData = DateTime.Now,
-                endDate = DateTime.Now,
-                totalCost = ""
-            });
+            return RedirectToPage("/Index");
         }
     }
 }
