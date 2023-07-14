@@ -8,7 +8,6 @@ namespace HotelApp.Web.Pages
 {
     public class BookRoomModel : PageModel
     {
-
         [BindProperty]
         public string FirstName { get; set; }
         
@@ -24,13 +23,7 @@ namespace HotelApp.Web.Pages
         [BindProperty(SupportsGet = true)]
         public int RoomTypeId { get; set; }
 
-        GuestModel guest = new GuestModel();
-
-        RoomTypeModel roomType = new RoomTypeModel();
-
-        RoomModel room = new RoomModel();
-
-        BookingFullModel booking = new BookingFullModel();
+        public RoomTypeModel RoomType { get; set; }
 
         private readonly IDatabaseData _db;
 
@@ -41,7 +34,10 @@ namespace HotelApp.Web.Pages
 
         public void OnGet()
         {
-            
+            if (RoomTypeId > 0)
+            {
+                RoomType = _db.GetRoomTypeById(RoomTypeId);
+            }
         }
 
         public IActionResult OnPost()
