@@ -10,4 +10,5 @@ The idea behind an MVP is to quickly develop and release a basic version of the 
 We have two different modules in this project. 
 
 Α) Τhe first one is the web interface module where the customer books his stay at the hotel. We use ASP.Net Core for this work.
+
 Β) The second one is the program management module were we take care the booking management of the hotel by someone. We use WPF technology for this work.
