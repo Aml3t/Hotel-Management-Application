@@ -42,6 +42,7 @@ namespace HotelApp.Web.Pages
 
         public IActionResult OnPost()
         {
+            _db.BookGuest(FirstName, LastName, StartDate, EndDate, RoomTypeId);
             return RedirectToPage("/Index");
         }
     }
