@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using HotelAppLibrary.Data;
+using HotelAppLibrary.Databases;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -21,14 +23,26 @@ namespace HotelApp.Desktop
         {
             base.OnStartup(e);
 
+            // Configuring the dependency injection container.
             var services = new ServiceCollection();
 
             //Transient because we want multiple instances. We could put Singleton if we wanted only one instance.
             services.AddTransient<MainWindow>();
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+            services.AddTransient<IDatabaseData, SqlData>();
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");
+
+            IConfiguration config = builder.Build();
+
+            services.AddSingleton(config);
+
+            var serviceProvider = services.BuildServiceProvider();
+            var mainWindow = serviceProvider.GetService<MainWindow>();
+
+            mainWindow.Show();
         }
     }
 }
