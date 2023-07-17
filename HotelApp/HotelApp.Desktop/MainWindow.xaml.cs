@@ -24,7 +24,6 @@ namespace HotelApp.Desktop
     {
         private readonly IDatabaseData _db;
 
-
         public MainWindow(IDatabaseData db)
         {
             InitializeComponent();

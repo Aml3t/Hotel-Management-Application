@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelAppLibrary.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,14 +18,17 @@ namespace HotelApp.Desktop
     /// </summary>
     public partial class CheckInPage : Window
     {
-        public CheckInPage()
+        private readonly IDatabaseData _db;
+
+        public CheckInPage(IDatabaseData db)
         {
             InitializeComponent();
+            _db = db;
         }
 
         private void checkInId_Click(object sender, RoutedEventArgs e)
         {
-
+            bool checkIn = _db.CheckInGuest(checkInId);
         }
     }
 }
