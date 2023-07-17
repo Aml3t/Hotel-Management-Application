@@ -16,11 +16,11 @@ namespace HotelApp.Desktop
     /// <summary>
     /// Interaction logic for CheckInPage.xaml
     /// </summary>
-    public partial class CheckInPage : Window
+    public partial class CheckInForm : Window
     {
         private readonly IDatabaseData _db;
 
-        public CheckInPage(IDatabaseData db)
+        public CheckInForm(IDatabaseData db)
         {
             InitializeComponent();
             _db = db;
