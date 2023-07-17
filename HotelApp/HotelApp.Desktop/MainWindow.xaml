@@ -20,6 +20,12 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0"
                    Text="Search for Guests" FontSize="28" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+            <TextBox x:Name="lastNameText" MinWidth="200" Margin="5"/>
+            <Button x:Name="searchForGuest" Margin="5" Padding="5"
+                    Click="searchForGuest_Click">
+                Search</Button>
+        </StackPanel>
 
     </Grid>
 </Window>
