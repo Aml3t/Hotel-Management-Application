@@ -15,7 +15,6 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0"
@@ -26,6 +25,33 @@
                     Click="searchForGuest_Click">
                 Search</Button>
         </StackPanel>
+        <ListBox x:Name="resultsList" Grid.Row="2" Grid.Column="0"
+               Margin="5 20 5 5" ItemsSource="{Binding}" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5">Reservation: </TextBlock>
+                            <TextBlock Text="{Binding FirstName}" Margin="5" />
+                            <TextBlock Text="{Binding LastName}" Margin="5" />
+                            <Button Margin="5" Padding="10">Check In</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5">Room: </TextBlock>
+                            <TextBlock Text="{Binding Title}" Margin="5" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5">Room Number:</TextBlock>
+                            <TextBlock Text="{Binding RoomNumber}" Margin="5" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5">Total Cost:</TextBlock>
+                            <TextBlock Text="{Binding TotalCost}" Margin="5" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

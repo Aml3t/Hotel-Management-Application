@@ -34,6 +34,7 @@ namespace HotelApp.Desktop
         private void searchForGuest_Click(object sender, RoutedEventArgs e)
         {
            List<BookingFullModel> bookings =  _db.SearchBookings(lastNameText.Text);
+            resultsList.ItemsSource = bookings;
         }
     }
 }
