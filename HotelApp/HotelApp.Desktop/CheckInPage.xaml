@@ -1,0 +1,67 @@
+﻿<Window x:Class="HotelApp.Desktop.CheckInPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelApp.Desktop"
+        mc:Ignorable="d"
+        Title="CheckInPage" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0"
+                   Text="Check In Guest" FontSize="28" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+            <TextBox x:Name="checkId" MinWidth="200" Margin="5"/>
+
+            <Button x:Name="checkInId" MinWidth="200" Margin="5"
+                    Click="checkInId_Click">
+                Check In Guest
+            </Button>
+        </StackPanel>
+
+        <ListBox x:Name="customerInformation" Grid.Row="2" Grid.Column="0"
+                 Margin="5 20 5 5" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>
+    
+        <!--public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+        public decimal TotalCost { get; set; }
+        public string FirstName  { get; set; }
+        public string LastName { get; set; }
+        public string RoomNumber { get; set; }
+        public int RoomTypeId { get; set; }-->
