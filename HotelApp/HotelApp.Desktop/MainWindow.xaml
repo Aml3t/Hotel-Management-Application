@@ -19,14 +19,19 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0"
                    Text="Search for Guests" FontSize="28" />
+
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
             <TextBox x:Name="lastNameText" MinWidth="200" Margin="5"/>
+
             <Button x:Name="searchForGuest" Margin="5" Padding="5"
                     Click="searchForGuest_Click">
-                Search</Button>
+                Search
+            </Button>
         </StackPanel>
+
         <ListBox x:Name="resultsList" Grid.Row="2" Grid.Column="0"
-               Margin="5 20 5 5" ItemsSource="{Binding}" d:ItemsSource="{d:SampleData ItemCount=5}">
+               Margin="5 20 5 5" ItemsSource="{Binding}" Height="300"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -67,6 +72,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
     </Grid>
 </Window>
