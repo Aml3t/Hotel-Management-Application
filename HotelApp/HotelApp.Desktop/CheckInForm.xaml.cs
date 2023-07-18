@@ -30,6 +30,11 @@ namespace HotelApp.Desktop
         public void PopulateCheckInInfo(BookingFullModel data)
         {
             _data = data;
+            firstNameText.Text = _data.FirstName;
+            lastNameText.Text = _data.LastName;
+            titleText.Text = _data.Title;
+            roomNumberText.Text = _data.RoomNumber;
+            totalCostText.Text = String.Format("{0:C}", _data.TotalCost);
         }
 
         private void checkInUser_Click(object sender, RoutedEventArgs e)
