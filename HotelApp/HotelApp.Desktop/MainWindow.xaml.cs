@@ -35,5 +35,10 @@ namespace HotelApp.Desktop
            List<BookingFullModel> bookings =  _db.SearchBookings(lastNameText.Text);
             resultsList.ItemsSource = bookings;
         }
+
+        private void CheckInButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
