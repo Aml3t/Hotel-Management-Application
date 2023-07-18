@@ -32,10 +32,9 @@ namespace HotelApp.Desktop
             _data = data;
         }
 
-
-        private void checkInId_Click(object sender, RoutedEventArgs e)
+        private void checkInUser_Click(object sender, RoutedEventArgs e)
         {
-            //bool checkIn = _db.CheckInGuest(checkInId);
+
         }
     }
 }
