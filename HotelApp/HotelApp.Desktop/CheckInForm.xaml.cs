@@ -1,4 +1,5 @@
 ﻿using HotelAppLibrary.Data;
+using HotelAppLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,13 +19,18 @@ namespace HotelApp.Desktop
     /// </summary>
     public partial class CheckInForm : Window
     {
-        
+        private BookingFullModel _data = null;
+
         public CheckInForm()
         {
             InitializeComponent();
             
         }
 
+        public void PopulateCheckInInfo(BookingFullModel data)
+        {
+            _data = data;
+        }
 
 
         private void checkInId_Click(object sender, RoutedEventArgs e)

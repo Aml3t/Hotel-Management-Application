@@ -42,6 +42,8 @@ namespace HotelApp.Desktop
             var checkInForm = App.serviceProvider.GetService<CheckInForm>();
             var model = (BookingFullModel)((Button)e.Source).DataContext;
 
+            checkInForm.PopulateCheckInInfo(model);
+
             checkInForm.Show();
         }
     }
