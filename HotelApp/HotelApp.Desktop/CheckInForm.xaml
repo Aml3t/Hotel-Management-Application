@@ -22,34 +22,24 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <TextBlock FontWeight="Bold" Margin="5"> Guest Name:</TextBlock>
-            <TextBlock Text="{Binding FirstName}" Margin="5" />
-            <TextBlock Text="{Binding LastName}" Margin="5" />
+            <TextBlock x:Name="firstNameText" Margin="5" />
+            <TextBlock x:Name="lastNameText" Margin="5" />
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock FontWeight="Bold" Margin="5">Room Type:</TextBlock>
-            <TextBlock Text="{Binding Title}" Margin="5"/>
+            <TextBlock x:Name="titleText" Margin="5"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <TextBlock FontWeight="Bold" Margin="5">Room Number:</TextBlock>
-            <TextBlock Text="{Binding RoomNumber}" Margin="5"/>
+            <TextBlock x:Name="roomNumberText" Margin="5"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3">
             <TextBlock FontWeight="Bold" Margin="5">Total Cost:</TextBlock>
-            <TextBlock Text="{Binding TotalCost}" Margin="5"/>
+            <TextBlock x:Name="totalCostText" Margin="5"/>
         </StackPanel>
-
-        <!--<StackPanel Orientation="Horizontal" Grid.Row="4">
-            <TextBlock FontWeight="Bold" Margin="5">Check in Date:</TextBlock>
-            <TextBlock Text="{Binding StartDate}" Margin="5"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="5">
-            <TextBlock FontWeight="Bold" Margin="5">Check out Date:</TextBlock>
-            <TextBlock Text="{Binding EndDate}" Margin="5"/>
-        </StackPanel>-->
         
         <Button Margin="10" Padding="20 10" Grid.Row="4"
                 x:Name="checkInUser" Click="checkInUser_Click">
