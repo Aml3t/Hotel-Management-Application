@@ -21,13 +21,13 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <TextBlock FontWeight="Bold" Margin="5"> Guest Name:</TextBlock>
+            <TextBlock FontWeight="Bold" Margin="5"> Reservation:</TextBlock>
             <TextBlock x:Name="firstNameText" Margin="5" />
             <TextBlock x:Name="lastNameText" Margin="5" />
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBlock FontWeight="Bold" Margin="5">Room Type:</TextBlock>
+            <TextBlock FontWeight="Bold" Margin="5">Room:</TextBlock>
             <TextBlock x:Name="titleText" Margin="5"/>
         </StackPanel>
 
@@ -43,7 +43,7 @@
         
         <Button Margin="10" Padding="20 10" Grid.Row="4"
                 x:Name="checkInUser" Click="checkInUser_Click">
-            Check In
+            Confirm Check-in
         </Button>
 
     </Grid>

@@ -44,6 +44,7 @@ namespace HotelApp.Desktop
         private void checkInUser_Click(object sender, RoutedEventArgs e)
         {
             _db.CheckInGuest(_data.Id);
+            this.Close();
         }
     }
 }
