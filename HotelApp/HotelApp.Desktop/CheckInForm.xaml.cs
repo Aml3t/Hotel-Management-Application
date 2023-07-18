@@ -28,7 +28,7 @@ namespace HotelApp.Desktop
 
         private void checkInId_Click(object sender, RoutedEventArgs e)
         {
-            bool checkIn = _db.CheckInGuest(checkInId);
+            //bool checkIn = _db.CheckInGuest(checkInId);
         }
     }
 }

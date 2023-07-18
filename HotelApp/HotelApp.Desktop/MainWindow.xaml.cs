@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HotelApp.Desktop
 {
@@ -38,7 +39,9 @@ namespace HotelApp.Desktop
 
         private void CheckInButton_Click(object sender, RoutedEventArgs e)
         {
+            var checkInForm = App.serviceProvider.GetService<CheckInForm>();
 
+            checkInForm.Show();
         }
     }
 }
