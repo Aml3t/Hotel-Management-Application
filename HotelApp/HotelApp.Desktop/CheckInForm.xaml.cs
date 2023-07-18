@@ -18,13 +18,14 @@ namespace HotelApp.Desktop
     /// </summary>
     public partial class CheckInForm : Window
     {
-        private readonly IDatabaseData _db;
-
-        public CheckInForm(IDatabaseData db)
+        
+        public CheckInForm()
         {
             InitializeComponent();
-            _db = db;
+            
         }
+
+
 
         private void checkInId_Click(object sender, RoutedEventArgs e)
         {
