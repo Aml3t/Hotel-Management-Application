@@ -20,12 +20,16 @@ namespace HotelApp.Desktop
     public partial class CheckInForm : Window
     {
         private BookingFullModel _data = null;
+        
+        private IDatabaseData _db;
 
-        public CheckInForm()
+        public CheckInForm(IDatabaseData db)
         {
             InitializeComponent();
-            
+            _db = db;
         }
+
+        public IDatabaseData Db { get; }
 
         public void PopulateCheckInInfo(BookingFullModel data)
         {
@@ -39,7 +43,7 @@ namespace HotelApp.Desktop
 
         private void checkInUser_Click(object sender, RoutedEventArgs e)
         {
-
+            _db.CheckInGuest(_data.Id);
         }
     }
 }
