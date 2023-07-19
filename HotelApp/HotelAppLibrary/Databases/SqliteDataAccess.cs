@@ -5,10 +5,12 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text;
 using System.Data.SQLite;
+using Dapper;
+using System.Linq;
 
 namespace HotelAppLibrary.Databases
 {
-    public class SqliteDataAccess
+    public class SqliteDataAccess : ISqliteDataAccess
     {
         private readonly IConfiguration _config;
 
@@ -25,9 +27,7 @@ namespace HotelAppLibrary.Databases
 
             using (IDbConnection connection = new SQLiteConnection(connectionString))
             {
-                List<T> rows = connection.Query<T>(sqlStatement,
-                                                   parameters,
-                                                   commandType: commandType).ToList();
+                List<T> rows = connection.Query<T>(sqlStatement, parameters).ToList();
 
                 return rows;
             }
@@ -35,22 +35,15 @@ namespace HotelAppLibrary.Databases
 
         public void SaveData<T>(string sqlStatement,
                                 T parameters,
-                                string connectionStringName,
-                                bool isStoredProcedure = false)
+                                string connectionStringName)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
 
-            CommandType commandType = CommandType.Text;
-
-            if (isStoredProcedure == true)
+            using (IDbConnection connection = new SQLiteConnection(connectionString))
             {
-                commandType = CommandType.StoredProcedure;
-            }
-
-            using (IDbConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Execute(sqlStatement, parameters, commandType: commandType);
+                connection.Execute(sqlStatement, parameters);
             }
 
         }
     }
+}
