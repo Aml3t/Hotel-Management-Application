@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace HotelAppLibrary.Data
 {
+    /// <summary>
+    /// Various methods for every day hotel functions like make a booking, check in etc..
+    /// </summary>
     public class SqlData : IDatabaseData
     {
         private readonly ISqlDataAccess _db;
