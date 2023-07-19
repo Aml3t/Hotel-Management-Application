@@ -30,7 +30,7 @@ namespace HotelApp.Desktop
             //Transient because we want multiple instances. We could put Singleton if we wanted only one instance.
             services.AddTransient<MainWindow>();
             services.AddTransient<CheckInForm>();
-            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+            services.AddTransient<ISqlDataAccess, SqliteDataAccess>();
             services.AddTransient<IDatabaseData, SqlData>();
 
             var builder = new ConfigurationBuilder()
