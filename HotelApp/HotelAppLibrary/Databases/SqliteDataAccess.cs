@@ -1,16 +1,14 @@
-﻿using Dapper;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
+using System.Data;
 using System.Text;
-using System.Threading.Tasks;
+using System.Data.SQLite;
 
 namespace HotelAppLibrary.Databases
 {
-    public class SqliteDataAccess : ISqlDataAccess
+    public class SqliteDataAccess
     {
         private readonly IConfiguration _config;
 
@@ -21,19 +19,11 @@ namespace HotelAppLibrary.Databases
 
         public List<T> LoadData<T, U>(string sqlStatement,
                                       U parameters,
-                                      string connectionStringName,
-                                      bool isStoredProcedure = false)
+                                      string connectionStringName)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
 
-            CommandType commandType = CommandType.Text; //Default value of commandType
-
-            if (isStoredProcedure == true) //Check whether default or Stored Procedure
-            {
-                commandType = CommandType.StoredProcedure;
-            }
-
-            using (IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new SQLiteConnection(connectionString))
             {
                 List<T> rows = connection.Query<T>(sqlStatement,
                                                    parameters,
@@ -64,4 +54,3 @@ namespace HotelAppLibrary.Databases
 
         }
     }
-}

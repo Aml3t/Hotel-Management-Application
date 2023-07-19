@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace HotelAppLibrary.Databases
 {
-    public class SqliteDataAccess : ISqlDataAccess
+    public class SqlDataAccess : ISqlDataAccess
     {
         private readonly IConfiguration _config;
 
-        public SqliteDataAccess(IConfiguration config)
+        public SqlDataAccess(IConfiguration config)
         {
             _config = config;
         }

@@ -29,7 +29,7 @@ namespace HotelApp.Web
 
             //Mapping an interface to a type. Depentency injection stuff etc//
             services.AddTransient<IDatabaseData, SqlData>();
-            services.AddTransient<ISqlDataAccess, SqliteDataAccess>();
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
