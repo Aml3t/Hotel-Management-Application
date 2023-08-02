@@ -28,9 +28,25 @@ namespace HotelApp.Web
             services.AddRazorPages();
 
             //Mapping an interface to a type. Depentency injection stuff etc//
-            services.AddTransient<IDatabaseData, SqlData>();
-            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+
+            string dbChoice = Configuration.GetValue<string>("DatabaseChoice");
+
+            if (dbChoice == "SQL")
+            {
+                services.AddTransient<IDatabaseData, SqlData>();
+            }
+            else if (dbChoice == "SQLite")
+            {
+                services.AddTransient<IDatabaseData, SqliteData>();
+            }
+            else
+            {
+                //Fallback  - Default value
+                services.AddTransient<IDatabaseData, SqlData>();
+            }
+
             services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
