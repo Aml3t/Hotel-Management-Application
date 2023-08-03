@@ -29,13 +29,13 @@ namespace HotelApp.Web
 
             //Mapping an interface to a type. Depentency injection stuff etc//
 
-            string dbChoice = Configuration.GetValue<string>("DatabaseChoice");
+            string dbChoice = Configuration.GetValue<string>("DatabaseChoice").ToLower();
 
-            if (dbChoice == "SQL")
+            if (dbChoice == "sql")
             {
                 services.AddTransient<IDatabaseData, SqlData>();
             }
-            else if (dbChoice == "SQLite")
+            else if (dbChoice == "sqlite")
             {
                 services.AddTransient<IDatabaseData, SqliteData>();
             }

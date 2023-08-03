@@ -42,13 +42,13 @@ namespace HotelApp.Desktop
 
             services.AddSingleton(config);
 
-            string dbChoice = config.GetValue<string>("DatabaseChoice");
+            string dbChoice = config.GetValue<string>("DatabaseChoice").ToLower();
 
-            if (dbChoice == "SQL")
+            if (dbChoice == "sql")
             {
                 services.AddTransient<IDatabaseData, SqlData>();
             }
-            else if (dbChoice == "SQLite")
+            else if (dbChoice == "sqlite")
             {
                 services.AddTransient<IDatabaseData, SqliteData>();
             }
