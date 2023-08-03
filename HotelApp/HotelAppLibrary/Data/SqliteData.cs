@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Data;
 using System.Text;
+using Dapper;
 
 namespace HotelAppLibrary.Data
 {
