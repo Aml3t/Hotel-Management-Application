@@ -18,7 +18,7 @@ namespace HotelApp.Web.Pages
 
         [DataType(DataType.Date)]
         [BindProperty(SupportsGet = true)]
-        public DateTime EndDate { get; set; } = DateTime.Now.AddDays(7);
+        public DateTime EndDate { get; set; } = DateTime.Now.AddDays(5);
 
         [BindProperty(SupportsGet = true)]
         public bool SearchEnabled { get; set; } = false;

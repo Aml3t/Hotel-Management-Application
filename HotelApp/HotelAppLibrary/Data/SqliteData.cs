@@ -33,15 +33,8 @@ namespace HotelAppLibrary.Data
 	                    or (b.StartDate <= @startDate and @startDate < b.EndDate)
 	                    );";
 
-            using (IDbConnection dbConnection = new SQLiteConnection(connectionStringName))
-            {
-                dbConnection.Open();
 
-                string query = sql;
-                var parameters = new { startDate, endDate };
-
-                return dbConnection.Query<RoomTypeModel>(query, parameters).AsList();
-            }
+                return _db.LoadData<RoomTypeModel, dynamic>(sql, new {startDate, endDate}, connectionStringName).AsList();
         }
         public void BookGuest(string FirstName, string LastName, DateTime startDate, DateTime endDate, int roomTypeId)
         {
