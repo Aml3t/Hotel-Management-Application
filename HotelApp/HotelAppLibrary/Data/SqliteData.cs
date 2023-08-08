@@ -21,19 +21,20 @@ namespace HotelAppLibrary.Data
         }
         public List<RoomTypeModel> GetAvailableRoomTypes(DateTime startDate, DateTime endDate)
         {
-            string sql = @"	select r.*
+            string sql = @" select t.Id, t.Title, t.Description ,t.Price
 	                    from Rooms r
 	                    inner join RoomTypes t on t.Id = r.RoomTypeId
-	                    and	r.Id not in(
+	                    where r.Id not in(
 	                    select b.RoomId
 	                    from Bookings b
 	                    where (@startDate < b.StartDate and @endDate > b.EndDate)
-	                    or (b.StartDate <= @endDate and @endDate < b.EndDate)
-	                    or (b.StartDate <= @startDate and @startDate < b.EndDate)
-	                    );";
+	                       or (b.StartDate <= @endDate and @endDate < b.EndDate)
+	                       or (b.StartDate <= @startDate and @startDate < b.EndDate)
+	                    )
+                        group by t.Id, t.Title, t.Description ,t.Price";
 
 
-                return _db.LoadData<RoomTypeModel, dynamic>(sql, new {startDate, endDate}, connectionStringName).AsList();
+            return _db.LoadData<RoomTypeModel, dynamic>(sql, new { startDate, endDate }, connectionStringName).AsList();
         }
         public void BookGuest(string FirstName, string LastName, DateTime startDate, DateTime endDate, int roomTypeId)
         {
