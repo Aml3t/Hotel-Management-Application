@@ -11,7 +11,7 @@ namespace HotelAppLibrary.Data
 {
     public class SqliteData : IDatabaseData
     {
-        private const string connectionStringName = "SQLiteDb";
+        private const string connectionStringName = "SqliteDb";
 
         private readonly ISqliteDataAccess _db;
 
