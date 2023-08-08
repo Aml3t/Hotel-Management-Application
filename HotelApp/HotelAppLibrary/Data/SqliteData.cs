@@ -46,7 +46,7 @@ namespace HotelAppLibrary.Data
         public void BookGuest(string FirstName, string LastName, DateTime startDate, DateTime endDate, int roomTypeId)
         {
             string sqlInsert = @"select top 1 [Id], [FirstName], [LastName] 
-	                            from dbo.Guests
+	                            from Guests
 	                            where FirstName = @firstName and LastName = @lastName";
 
 
@@ -54,37 +54,42 @@ namespace HotelAppLibrary.Data
                                                      new { FirstName, LastName },
                                                      connectionStringName).FirstOrDefault();
 
-            RoomTypeModel roomType = _db.LoadData<RoomTypeModel, dynamic>("select * from dbo.RoomTypes where Id = @Id",
-                                                                          new { Id = roomTypeId },
-                                                                          connectionStringName,
-                                                                          false).First();
+            //RoomTypeModel roomType = _db.LoadData<RoomTypeModel, dynamic>("select * from dbo.RoomTypes where Id = @Id",
+            //                                                              new { Id = roomTypeId },
+            //                                                              connectionStringName,
+            //                                                              false).First();
 
-            TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
+            //TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
 
 
 
-            List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
-                                                                              new { startDate, endDate, roomTypeId },
-                                                                              connectionStringName,
-                                                                              true);
+            //List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
+            //                                                                  new { startDate, endDate, roomTypeId },
+            //                                                                  connectionStringName,
+            //                                                                  true);
 
-            _db.SaveData("dbo.spBookings_Insert",
-                         new
-                         {
-                             roomId = availableRooms.First().Id,
-                             guestId = guest.Id,
-                             startDate = startDate,
-                             endDate = endDate,
-                             totalCost = timeStaying.Days * roomType.Price
-                         },
-                         connectionStringName,
-                         true);
+            //_db.SaveData("dbo.spBookings_Insert",
+            //             new
+            //             {
+            //                 roomId = availableRooms.First().Id,
+            //                 guestId = guest.Id,
+            //                 startDate = startDate,
+            //                 endDate = endDate,
+            //                 totalCost = timeStaying.Days * roomType.Price
+            //             },
+            //             connectionStringName,
+            //             true);
 
         }
 
         public void CheckInGuest(int bookingId)
         {
-            throw new NotImplementedException();
+            string sql = @"	update Bookings
+	                        set CheckedIn = 1
+	                        where Id = @Id;";
+
+            _db.SaveData(sql, new { Id = bookingId }, connectionStringName);
+
         }
 
 
