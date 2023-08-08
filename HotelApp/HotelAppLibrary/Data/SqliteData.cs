@@ -22,12 +22,11 @@ namespace HotelAppLibrary.Data
         public List<RoomTypeModel> GetAvailableRoomTypes(DateTime startDate, DateTime endDate)
         {
             string sql = @"	select r.*
-	                    from dbo.Rooms r
-	                    inner join dbo.RoomTypes t on t.Id = r.RoomTypeId
-	                    where r.RoomTypeId = @roomTypeId
+	                    from Rooms r
+	                    inner join RoomTypes t on t.Id = r.RoomTypeId
 	                    and	r.Id not in(
 	                    select b.RoomId
-	                    from dbo.Bookings b
+	                    from Bookings b
 	                    where (@startDate < b.StartDate and @endDate > b.EndDate)
 	                    or (b.StartDate <= @endDate and @endDate < b.EndDate)
 	                    or (b.StartDate <= @startDate and @startDate < b.EndDate)
