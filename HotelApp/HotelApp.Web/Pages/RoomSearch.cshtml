@@ -33,6 +33,9 @@
                 <th><strong>Price</strong></th>
                 <th></th>
             </tr>
+            <tr>
+                <td colspan="3"><hr /></td>
+            </tr>
         </thead>
         <tbody>
             @foreach (var room in Model.AvailableRoomTypes)
@@ -43,10 +46,15 @@
                         @room.Description
                     </td>
                     <td>@string.Format("{0:C}", room.Price)</td>
-                    <td><a asp-page="/BookRoom"
+                    <td>
+                        <a asp-page="/BookRoom"
                         asp-route-roomtypeid="@room.Id"
                         asp-route-startdate="@Model.StartDate.ToShortDateString()"
-                        asp-route-enddate="@Model.EndDate.ToShortDateString()">Book Now</a></td>
+                        asp-route-enddate="@Model.EndDate.ToShortDateString()"
+                        style="margin-left: 10px">Book Now</a></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><hr /></td>
                 </tr>
             }
         </tbody>

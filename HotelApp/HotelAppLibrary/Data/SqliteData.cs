@@ -34,7 +34,13 @@ namespace HotelAppLibrary.Data
                         group by t.Id, t.Title, t.Description ,t.Price";
 
 
-            return _db.LoadData<RoomTypeModel, dynamic>(sql, new { startDate, endDate }, connectionStringName).AsList();
+            var output =  _db.LoadData<RoomTypeModel, dynamic>(sql,
+                                                        new { startDate, endDate },
+                                                        connectionStringName).AsList();
+
+            output.ForEach(x => x.Price = x.Price /100);
+            return output;
+
         }
         public void BookGuest(string FirstName, string LastName, DateTime startDate, DateTime endDate, int roomTypeId)
         {
