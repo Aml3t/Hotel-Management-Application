@@ -84,19 +84,24 @@ namespace HotelAppLibrary.Data
 
         public void CheckInGuest(int bookingId)
         {
-            string sql = @"	update Bookings
+            string sql = @"update Bookings
 	                        set CheckedIn = 1
 	                        where Id = @Id;";
 
             _db.SaveData(sql, new { Id = bookingId }, connectionStringName);
-
         }
 
 
 
         public RoomTypeModel GetRoomTypeById(int id)
         {
-            throw new NotImplementedException();
+            string sql = @"select [Id], [Title], [Description], [Price]
+	                        from RoomTypes
+	                        where Id = @id;";
+
+            return _db.LoadData<RoomTypeModel, dynamic>(sql,
+                                            new { id },
+                                            connectionStringName).FirstOrDefault();
         }
 
         public List<BookingFullModel> SearchBookings(string lastName)
