@@ -80,15 +80,18 @@ namespace HotelAppLibrary.Data
             List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>(sqlRoomsAvailable,
                                                                               new { startDate, endDate, roomTypeId },
                                                                               connectionStringName);
+            string sqlBookingsInsert = 
+                @"insert into Bookings(RoomId, GuestId, StartDate, EndDate, TotalCost)
+	            values (@roomId, @guestId, @startDate, @endDate, @totalCost)";
 
-            _db.SaveData("dbo.spBookings_Insert",
+            _db.SaveData(sqlBookingsInsert,
                          new
                          {
                              roomId = availableRooms.First().Id,
                              guestId = guest.Id,
                              startDate = startDate,
                              endDate = endDate,
-                             totalCost = timeStaying.Days * roomType.Price
+                             totalCost = timeStaying.Days * roomType.Price * 100
                          },
                          connectionStringName);
 
