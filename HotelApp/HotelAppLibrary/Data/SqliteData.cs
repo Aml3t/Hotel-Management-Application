@@ -45,12 +45,17 @@ namespace HotelAppLibrary.Data
         }
         public void BookGuest(string FirstName, string LastName, DateTime startDate, DateTime endDate, int roomTypeId)
         {
-            string sqlInsert = @"select top 1 [Id], [FirstName], [LastName] 
-	                            from Guests
-	                            where FirstName = @firstName and LastName = @lastName";
+            string sqlGuestInsert = @" if not exists (select 1 from dbo.Guests where FirstName = @firstName and LastName = @lastName)
+	                            begin
+		                            insert into Guests(FirstName, LastName)
+		                            values (@firstName, @lastName);
+	                            end
+	                              select top 1 [Id], [FirstName], [LastName] 
+	                                from Guests
+	                                where FirstName = @firstName and LastName = @lastName";
 
 
-            GuestModel guest = _db.LoadData<GuestModel, dynamic>(sqlInsert,
+            GuestModel guest = _db.LoadData<GuestModel, dynamic>(sqlGuestInsert,
                                                      new { FirstName, LastName },
                                                      connectionStringName).FirstOrDefault();
 
@@ -60,9 +65,19 @@ namespace HotelAppLibrary.Data
 
             TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
 
+            string sqlRoomsAvailable = @"   select r.*
+	                                       from dbo.Rooms r
+	                                       inner join RoomTypes t on t.Id = r.RoomTypeId
+	                                       where r.RoomTypeId = @roomTypeId
+	                                       and	r.Id not in(
+	                                       select b.RoomId
+	                                       from Bookings b
+	                                       where (@startDate < b.StartDate and @endDate > b.EndDate)
+	                                       or (b.StartDate <= @endDate and @endDate < b.EndDate)
+	                                       or (b.StartDate <= @startDate and @startDate < b.EndDate)
+	                                       )";
 
-
-            List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
+            List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>(sqlRoomsAvailable,
                                                                               new { startDate, endDate, roomTypeId },
                                                                               connectionStringName);
 
