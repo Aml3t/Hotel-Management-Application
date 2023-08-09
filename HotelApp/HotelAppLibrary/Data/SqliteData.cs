@@ -59,7 +59,7 @@ namespace HotelAppLibrary.Data
                                                      new { FirstName, LastName },
                                                      connectionStringName).FirstOrDefault();
 
-            RoomTypeModel roomType = _db.LoadData<RoomTypeModel, dynamic>("select * from dbo.RoomTypes where Id = @Id",
+            RoomTypeModel roomType = _db.LoadData<RoomTypeModel, dynamic>("select * from RoomTypes where Id = @Id",
                                                                           new { Id = roomTypeId },
                                                                           connectionStringName).First();
 
