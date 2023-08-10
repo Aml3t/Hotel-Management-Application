@@ -99,7 +99,7 @@ namespace HotelAppLibrary.Data
                              guestId = guest.Id,
                              startDate = startDate,
                              endDate = endDate,
-                             totalCost = timeStaying.Days * roomType.Price * 100
+                             totalCost = timeStaying.Days * roomType.Price
                          },
                          connectionStringName);
 
@@ -129,7 +129,10 @@ namespace HotelAppLibrary.Data
 
         public List<BookingFullModel> SearchBookings(string lastName)
         {
-            throw new NotImplementedException();
+            return _db.LoadData<BookingFullModel, dynamic>("dbo.spBookings_Search",
+                                                new { lastName, startDate = DateTime.Now.Date },
+                                                connectionStringName,
+                                                true);
         }
     }
 }
