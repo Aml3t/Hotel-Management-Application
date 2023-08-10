@@ -45,32 +45,26 @@ namespace HotelAppLibrary.Data
         }
         public void BookGuest(string FirstName, string LastName, DateTime startDate, DateTime endDate, int roomTypeId)
         {
-            string sqlGuestInsert = @" if not exists (select 1 from dbo.Guests where FirstName = @firstName and LastName = @lastName)
-	                            begin
-		                            insert into Guests(FirstName, LastName)
-		                            values (@firstName, @lastName);
-	                            end
-	                              select top 1 [Id], [FirstName], [LastName] 
-	                                from Guests
-	                                where FirstName = @firstName and LastName = @lastName";
 
             string sql = @"select 1 from dbo.Guests where FirstName = @firstName and LastName = @lastName)";
             
             int results = _db.LoadData<dynamic, dynamic>(sql,
                                                         new { FirstName, LastName },
                                                         connectionStringName).Count();
-
             if (results == 0)
             {
                 sql = @"insert into Guests(FirstName, LastName)
-		                values (@firstName, @lastName);";
+		                values (@firstName, @lastName)";
 
                 _db.SaveData(sql, new { FirstName, LastName }, connectionStringName);
             }
 
-            sql = @"";
+            sql = @"select top 1 [Id], [FirstName], [LastName]
+                    from Guests
+	               where FirstName = @firstName and LastName = @lastName";
 
-            GuestModel guest = _db.LoadData<GuestModel, dynamic>(sqlGuestInsert,
+
+            GuestModel guest = _db.LoadData<GuestModel, dynamic>(sql,
                                                      new { FirstName, LastName },
                                                      connectionStringName).FirstOrDefault();
 
