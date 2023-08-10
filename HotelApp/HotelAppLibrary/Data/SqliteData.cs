@@ -43,30 +43,29 @@ namespace HotelAppLibrary.Data
             return output;
 
         }
-        public void BookGuest(string FirstName, string LastName, DateTime startDate, DateTime endDate, int roomTypeId)
+        public void BookGuest(string firstName, string lastName, DateTime startDate, DateTime endDate, int roomTypeId)
         {
 
-            string sql = @"select 1 from dbo.Guests where FirstName = @firstName and LastName = @lastName)";
-            
-            int results = _db.LoadData<dynamic, dynamic>(sql,
-                                                        new { FirstName, LastName },
-                                                        connectionStringName).Count();
+            string sql = @"select 1 from Guests where FirstName = @firstName and LastName = @lastName";
+
+            int results = _db.LoadData<dynamic, dynamic>(sql, new { firstName, lastName }, connectionStringName).Count();
+
             if (results == 0)
             {
                 sql = @"insert into Guests(FirstName, LastName)
-		                values (@firstName, @lastName)";
+		                values (@firstName, @lastName);";
 
-                _db.SaveData(sql, new { FirstName, LastName }, connectionStringName);
+                _db.SaveData(sql, new { firstName, lastName }, connectionStringName);
             }
 
-            sql = @"select top 1 [Id], [FirstName], [LastName]
-                    from Guests
-	               where FirstName = @firstName and LastName = @lastName";
+            sql = @"select [Id], [FirstName], [LastName]
+                        from Guests
+	                where FirstName = @firstName and LastName = @lastName LIMIT 1;";
 
 
             GuestModel guest = _db.LoadData<GuestModel, dynamic>(sql,
-                                                     new { FirstName, LastName },
-                                                     connectionStringName).FirstOrDefault();
+                                                     new { firstName, lastName },
+                                                     connectionStringName).First();
 
             RoomTypeModel roomType = _db.LoadData<RoomTypeModel, dynamic>("select * from RoomTypes where Id = @Id",
                                                                           new { Id = roomTypeId },
@@ -74,8 +73,8 @@ namespace HotelAppLibrary.Data
 
             TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
 
-            string sqlRoomsAvailable = @"   select r.*
-	                                       from dbo.Rooms r
+            string sqlRoomsAvailable = @"  select r.*
+	                                       from Rooms r
 	                                       inner join RoomTypes t on t.Id = r.RoomTypeId
 	                                       where r.RoomTypeId = @roomTypeId
 	                                       and	r.Id not in(
