@@ -138,9 +138,17 @@ namespace HotelAppLibrary.Data
 	                        inner join RoomTypes rt on r.RoomTypeId = rt.Id
 	                        where b.StartDate = @startDate and g.LastName = @lastName;";
 
-            return _db.LoadData<BookingFullModel, dynamic>(sql,
+
+            var output = _db.LoadData<BookingFullModel, dynamic>(sql,
                                                 new { lastName, startDate = DateTime.Now.Date },
                                                 connectionStringName);
+            output.ForEach(x =>
+            {
+                x.Price = x.Price / 100;
+                x.TotalCost = x.TotalCost / 100;
+            });
+
+            return output;
         }
     }
 }
