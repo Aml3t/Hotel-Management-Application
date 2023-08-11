@@ -20,6 +20,7 @@ namespace HotelAppLibrary.Data
         {
             _db = db;
         }
+
         public List<RoomTypeModel> GetAvailableRoomTypes(DateTime startDate, DateTime endDate)
         {
             string sql = @" select t.Id, t.Title, t.Description ,t.Price
