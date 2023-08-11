@@ -108,8 +108,8 @@ namespace HotelAppLibrary.Data
         public void CheckInGuest(int bookingId)
         {
             string sql = @"update Bookings
-	                        set CheckedIn = 1
-	                        where Id = @Id;";
+	                       set CheckedIn = 1
+	                       where Id = @Id;";
 
             _db.SaveData(sql, new { Id = bookingId }, connectionStringName);
         }
