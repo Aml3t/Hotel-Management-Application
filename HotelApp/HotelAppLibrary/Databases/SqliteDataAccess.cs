@@ -12,6 +12,9 @@ namespace HotelAppLibrary.Databases
 {
     public class SqliteDataAccess : ISqliteDataAccess
     {
+        /// <summary>
+        /// Abstract methods that will be used for SQLite database interactions.
+        /// </summary>
         private readonly IConfiguration _config;
 
         public SqliteDataAccess(IConfiguration config)

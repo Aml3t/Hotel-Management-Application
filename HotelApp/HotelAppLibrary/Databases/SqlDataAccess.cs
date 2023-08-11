@@ -12,6 +12,12 @@ namespace HotelAppLibrary.Databases
 {
     public class SqlDataAccess : ISqlDataAccess
     {
+
+        /// <summary>
+        /// Abstract methods that will be used for SQL database interactions.
+        /// </summary>
+        /// 
+
         private readonly IConfiguration _config;
 
         public SqlDataAccess(IConfiguration config)

@@ -12,6 +12,11 @@ namespace HotelAppLibrary.Data
 {
     public class SqliteData : IDatabaseData
     {
+        /// <summary>
+        /// Various methods for every day hotel functions like make a booking, check in etc..
+        /// This is used for the SQLite database. 
+        /// </summary>
+        /// 
         private const string connectionStringName = "SqliteDb";
 
         private readonly ISqliteDataAccess _db;
@@ -31,8 +36,7 @@ namespace HotelAppLibrary.Data
 	                    from Bookings b
 	                    where (@startDate < b.StartDate and @endDate > b.EndDate)
 	                       or (b.StartDate <= @endDate and @endDate < b.EndDate)
-	                       or (b.StartDate <= @startDate and @startDate < b.EndDate)
-	                    )
+	                       or (b.StartDate <= @startDate and @startDate < b.EndDate))
                         group by t.Id, t.Title, t.Description ,t.Price";
 
 
@@ -89,7 +93,7 @@ namespace HotelAppLibrary.Data
             List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>(sqlRoomsAvailable,
                                                                               new { startDate, endDate, roomTypeId },
                                                                               connectionStringName);
-            string sqlBookingsInsert = 
+            string sqlBookingsInsert =
                 @"insert into Bookings(RoomId, GuestId, StartDate, EndDate, TotalCost)
 	            values (@roomId, @guestId, @startDate, @endDate, @totalCost)";
 

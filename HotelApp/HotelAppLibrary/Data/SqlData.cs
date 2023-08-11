@@ -10,7 +10,10 @@ namespace HotelAppLibrary.Data
 {
     /// <summary>
     /// Various methods for every day hotel functions like make a booking, check in etc..
+    /// This is used for the SQL database. 
     /// </summary>
+    /// 
+
     public class SqlData : IDatabaseData
     {
         private readonly ISqlDataAccess _db;
