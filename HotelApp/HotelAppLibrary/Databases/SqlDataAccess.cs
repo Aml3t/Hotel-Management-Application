@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace HotelAppLibrary.Databases
                                       bool isStoredProcedure = false)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
-
+            
             CommandType commandType = CommandType.Text; //Default value of commandType
 
             if (isStoredProcedure == true) //Check whether default or Stored Procedure
